@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: uaa-service
+
+server:
+  servlet:
+    context-path: /uaa
+  port: 9999
+
+logging: 
+  level:
+    org: 
+      springframework: 
+        security: DEBUG
+

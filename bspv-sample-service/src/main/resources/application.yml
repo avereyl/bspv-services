@@ -1,0 +1,31 @@
+server:
+  port: 8180
+  servlet: 
+    context-path: /sample    
+    
+app:
+  auth-server:
+    host: http://localhost:9999/uaa
+    
+security:
+  oauth2:
+    client:
+      client-id: bspv-sample-service
+      client-secret: password
+      access-token-uri: ${app.auth-server.host}/oauth/token
+      user-authorization-uri: ${app.auth-server.host}/oauth/authorize   
+    resource:
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmFyzGmsY42fT5dx01T5z
+          Lvm5cK6JAHWjmsrFTITIEQmMUownRoRoh6KB39iLDRQ37e+FqaBfXRfxSSS1F4gS
+          U0cN1V4XxBYS5srYhFoLPitrx6jneEWyu51JR4lGETZqdM3VnQuObNATfD0yl/xT
+          R0+kgmLT/No3CebfHODgnFfRf9LDqfc1vS8aOXZb/KYFN2lWshvMc+3ONucyh5Hr
+          LBh1sCPYF9XfqbeogCzb2sDCgZ2VZPfVvthMSG5NgY6BG7Z5Li8231Ij5f/fqOsp
+          n/QeESEXe4UDTa4gv5t1Nyvb86oNscdpiOrWFcAnrictCvBlIEX5BRYN4N+2VkUZ
+          mwIDAQAB
+          -----END PUBLIC KEY-----
+spring: 
+  application: 
+    name: sample-service
