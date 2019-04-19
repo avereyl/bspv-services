@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework.cloud.gateway: INFO
+
+spring:
+  application:
+    name: uaa-service
+
+# keystore password
+security: 
+  keystore: 
+    password: password
+    keypair: bspv-uaa-service
+  cookie-path: 

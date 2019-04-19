@@ -1,0 +1,18 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /pharma
+
+logging:
+  level:
+    org: DEBUG
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+
+spring:
+  application:
+    name: pharma-service
+    

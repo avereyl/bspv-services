@@ -1,0 +1,17 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /evoucher
+
+logging:
+  level:
+    org: DEBUG
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+    
+spring:
+  application:
+    name: evoucher-service

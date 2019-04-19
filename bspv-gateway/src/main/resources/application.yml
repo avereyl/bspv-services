@@ -1,0 +1,54 @@
+# Define the port where the API gateway server will be running
+server:
+  port: 8080
+  
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.security.web.FilterChainProxy: DEBUG
+    
+# Define the Eureka server that handles service registration
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9999/eureka}
+  instance:
+    preferIpAddress: false
+
+security: 
+  oauth: 
+    client: 
+      auth:
+        basic: Basic YnNwdi1nYXRld2F5OjEyMw==
+        
+spring:
+  application:
+    name: bspv-gateway
+    
+# Define routing  
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: pharma-service
+        uri: lb://pharma-service
+        predicates:
+        - Path=/pharma/**
+        filters:
+        - RewritePath=/pharma/(?<path>.*), /$\{path}
+      - id: evoucher-service
+        uri: lb://evoucher-service
+        predicates:
+        - Path=/evouchers/**
+        filters:
+        - RewritePath=/evouchers/(?<path>.*), /$\{path}
+      - id: uaa-service
+        uri: lb://uaa-service
+        predicates:
+        - Path=/uaa/**
+        filters:
+        - RewritePath=/uaa/(?<path>.*), /uaa/$\{path}
